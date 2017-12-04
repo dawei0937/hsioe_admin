@@ -1,0 +1,4 @@
+/srcs/server/static/assest/default/node_modules
+*.zip
+*.rar
+*.pyc

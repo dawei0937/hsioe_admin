@@ -1,0 +1,20 @@
+{
+    "autojson"          :   1,
+    "admin_view"        :   1,
+    "download_view"     :   1,
+
+    "redis"     :   {
+        "host"          :   "127.0.0.1",
+        "port"          :   6379,
+        "database"      :   1,
+        "keyword"       :   "redis",
+        "passwd"		:   ""
+	},
+    
+	"fish"  :       {
+
+            "share_coin"        :   100,
+            "exchange_shop"     :   1,
+            "shop_version"      :   "1"
+    }
+}
