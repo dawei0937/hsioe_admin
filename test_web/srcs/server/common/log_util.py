@@ -21,6 +21,11 @@ def info(content):
     if content:
         logging.info(content)
 
+def debug(content):
+    """ 调试日志信息 """
+    if content:
+        logging.debug(content)
+
 def error(content,is_send_mail = False):
     """ 记录错误日志信息 """
     if content:

@@ -15,6 +15,8 @@ import re
 import urllib
 from bottle import response,HTTPResponse,request
 from common import json_util
+from common.install_plugin import *
+from i18n.i18n import getLangInst
 
 def get_ip():
     """ 获取当前客户端IP """
@@ -165,3 +167,31 @@ def __request_handle(args_value, msg, is_strip, lenght, is_check_null, notify_ms
         if re_result:
             return_raise(return_msg(-1, "%s 含有特殊字符，请重新输入" % msg))
     return args_value
+
+def get_cur_lang_cookie():
+    """ 从cookie中获取当前系统语言 """s
+    if not request.get_cookie('hsioe_lang'):
+        return request.get_cookie('hsioe_lang','CHN')
+    else:
+        return request.get_cookie('gglang')
+
+def getLang():
+    """
+    获取语言包
+    :return 当前系统语言实例
+    """
+    return getLangInst(getCurLangByCookie())
+
+def allow_cross_request(fn):
+    """ 是否允许跨域 """
+    def _add_cross(*args,**kw):
+        #跨域装饰器
+        session = session_plugin.getSession()
+        argNames = inspect.getargspec(fn)[0]
+        if redis_plugin.keyword in argNames:
+            kw[redis_plugin.keyword] = session.rdb
+        if session_plugin.keyword in argNames:
+            kw[session_plugin.keyword] = session
+        response.add_header('Access-Control-Allow-Origin', '*')
+        return fn(*args,**kw)
+    return _add_cross

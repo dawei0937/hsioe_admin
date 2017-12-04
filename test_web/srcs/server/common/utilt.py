@@ -37,17 +37,7 @@ def allow_cross(fn):
 
     return _add_cross
 
-def getInfoBySid(redis,sid):
-    """
-    通过Sid获取SessionTable, account, uid, verfiySid信息
-    """
-    SessionTable = FORMAT_USER_HALL_SESSION%(sid)
-    account,uid = redis.hmget(SessionTable, ('account','uid'))
-    verfiySid   = redis.get(FORMAT_USER_PLATFORM_SESSION%(uid))
-    log_debug('[try getInfoById] account[%s] sessionKey[%s] verfiyKey[%s]'%(account,sid,verfiySid))
-    return SessionTable, account, uid, verfiySid
-
-def ServerPagination(dates,pageSize,pageNumber):
+def get_pagination(datas,pageSize,pageNumber):
     """
     服务器端分页函数
     dates：查询到数据集合

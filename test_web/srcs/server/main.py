@@ -43,7 +43,7 @@ log_path = os.path.join(program_path, 'log')
 logging.basicConfig(level=logging.INFO,
                      format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
                      filename="%s/ds_info.log" % log_path,
-                     filemode='a')
+                     filemode='w+')
 #实例化语言包
 initializeWeb()
 

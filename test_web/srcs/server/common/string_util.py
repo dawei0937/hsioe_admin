@@ -107,3 +107,23 @@ def replaceCharEntity(htmlstr):
             htmlstr=re_charEntity.sub('',htmlstr,1)
             sz=re_charEntity.search(htmlstr)
     return htmlstr
+
+def format_credit(credit):
+    """
+    将金币格式转化为money的模式 000,000,00
+    :params credit 输入的金币
+    :return 格式化好的金钱格式
+    """
+    if not credit.isdigit():
+        return 0.0
+    credit_str = '%.2f'%(float(credit))
+    l = credit_str.split('.')
+    s = ''
+    _end = -len(l[0])-1
+    for i in xrange(-1, _end, -1):
+        char = l[0][i]
+        if char.isdigit() and i % 3 == 2 and i != -1:
+            s = ',' + s
+        s = char + s
+
+    return s + '.' + l[1]
