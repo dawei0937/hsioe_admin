@@ -169,7 +169,7 @@ def __request_handle(args_value, msg, is_strip, lenght, is_check_null, notify_ms
     return args_value
 
 def get_cur_lang_cookie():
-    """ 从cookie中获取当前系统语言 """s
+    """ 从cookie中获取当前系统语言 """
     if not request.get_cookie('hsioe_lang'):
         return request.get_cookie('hsioe_lang','CHN')
     else:

@@ -50,7 +50,7 @@ initializeWeb()
 #############################################
 # 初始化模版相关
 #############################################
-bottle.TEMPLATE_PATH.append('server/template/%s'%(TEMPLATE_NAME))
+bottle.TEMPLATE_PATH.append('server/template/%s'%('default'))
 random.seed()
 #主应用
 main_app = bottle.default_app()
