@@ -8,13 +8,7 @@
         "port"          :   6379,
         "database"      :   1,
         "keyword"       :   "redis",
-        "passwd"		:   ""
-	},
-    
-	"fish"  :       {
-
-            "share_coin"        :   100,
-            "exchange_shop"     :   1,
-            "shop_version"      :   "1"
-    }
+        "passwd"		:   "",
+        "version"       :  "2.10.1"
+	}
 }
