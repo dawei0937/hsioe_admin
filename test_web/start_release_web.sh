@@ -1,2 +1,2 @@
 cd srcs
-python -m index dw_admin >access.log &
+python -m index hsioe_admin >access.log &

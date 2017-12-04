@@ -12,7 +12,8 @@ Description:
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-sys.path.insert(0, 'server_common')
+#添加第三方库
+sys.path.insert(0, 'vendor')
 sys.path.insert(0, './server')
 sys.path.insert(0, '.')
 import bottle
