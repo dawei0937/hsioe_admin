@@ -33,12 +33,12 @@ sys.path.append(program_path)
 bottle.BaseRequest.MEMFILE_MAX = 1024 * 1024 * 2
 #############################################
 # 初始化日志相关参数
-#############################################
-# 如果日志目录log文件夹不存在，则创建日志目录
-if not os.path.exists('log'):
-    os.mkdir('log')
 # 初始化日志目录路径
 log_path = os.path.join(program_path, 'log')
+#############################################
+# 如果日志目录log文件夹不存在，则创建日志目录
+if not os.path.exists(log_path):
+    os.mkdir(log_path,0755)
 # 定义日志输出格式与路径
 logging.basicConfig(level=logging.INFO,
                      format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
