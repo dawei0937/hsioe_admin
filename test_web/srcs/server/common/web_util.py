@@ -34,18 +34,19 @@ def get_session(session,name):
     """ 获取session """
     return session.get(name,None)
 
-def return_msg(state,msg,data={}):
+def do_response(state,msg,jumpUrl='',data={}):
     """
     接口输出到客户端
-    :params  state 状态吗（公共参数 -1=出错,0=正常）
+    :params  code 状态吗（公共参数 -1=出错,0=正常）
     :params  msg 说明信息
     :params  data 数据字典
     :return 返回组合后的json字符串
     """
 
     msg = {
-            'state'     :       state,
+            'code'      :       state,
             'msg'       :       msg,
+            'jumpUrl'   :       jumpUrl,
             'data'      :       data
     }
 
@@ -140,9 +141,9 @@ def __request_handle(args_value, msg, is_strip, lenght, is_check_null, notify_ms
     # 如果参数为空，则返回该参数不允许为空的json串给前端
     if is_check_null and not args_value:
         if notify_msg:
-            return_raise(return_msg(-1, notify_msg))
+            return_raise(do_response(-1, notify_msg))
         else:
-            return_raise(return_msg(-1, "%s 不允许为空" % msg))
+            return_raise(do_response(-1, "%s 不允许为空" % msg))
     elif not args_value:
         return args_value
 
@@ -159,13 +160,13 @@ def __request_handle(args_value, msg, is_strip, lenght, is_check_null, notify_ms
         args_value = args_value.strip()
     # 判断是否超出指定长度
     if lenght > 0 and len(args_value) > lenght:
-        return_raise(return_msg(-1, "%s 超出 %s 个字符" % (msg, lenght)))
+        return_raise(do_response(-1, "%s 超出 %s 个字符" % (msg, lenght)))
 
     # 如果参数含有特殊字符，则返回该参数不允许有特殊字符的json串给前端
     if is_check_special_char:
         re_result = re.search('\||<|>|&|%|~|\^|;|\'', args_value)
         if re_result:
-            return_raise(return_msg(-1, "%s 含有特殊字符，请重新输入" % msg))
+            return_raise(do_response(-1, "%s 含有特殊字符，请重新输入" % msg))
     return args_value
 
 def get_cur_lang_cookie():
