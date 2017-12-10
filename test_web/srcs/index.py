@@ -21,6 +21,6 @@ import server.main
 
 
 if __name__ == '__main__':
-    bottle.run(server='paste', host='0.0.0.0', port=9798, reloader=True, debug=False)
+    bottle.run(server='paste', host='0.0.0.0', port=9798, reloader=True, debug=True)
 else:
     application = bottle.default_app()
